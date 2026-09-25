@@ -1,0 +1,168 @@
+book_id,title,branch_id,genre,pages
+1001,The Useful Unknown,101,Biography,414
+1002,Small Worlds New Edition,101,Mystery,244
+1003,Signals and Stories Expanded,101,Mystery,604
+1004,The Last Orchard Expanded,101,Mystery,226
+1005,The Last Orchard New Edition,101,History,583
+1006,Simple Systems Revised,101,History,485
+1007,Quiet Machines New Edition,101,Science,315
+1008,The Cedar Room New Edition,101,Science,449
+1009,Open Roads New Edition,101,Biography,229
+1010,Blue Horizon Expanded,101,Mystery,558
+1011,Small Worlds Revised,101,History,450
+1012,The Long River New Edition,101,Fiction,467
+1013,The Useful Unknown Illustrated,101,Fiction,430
+1014,Across the Fields Expanded,101,Fiction,277
+1015,Small Worlds,102,Technology,445
+1016,The Second Question Illustrated,102,Biography,607
+1017,Learning to See Revised,102,Science,143
+1018,Learning to See New Edition,102,Fiction,151
+1019,The Long River Illustrated,102,Science,606
+1020,Signals and Stories Revised,102,History,191
+1021,Northern Skies Revised,102,History,332
+1022,Blue Horizon Illustrated,102,Technology,288
+1023,Winter Garden New Edition,102,Biography,419
+1024,The Cedar Room New Edition,102,Science,477
+1025,The Long River New Edition,102,Mystery,262
+1026,Signals and Stories Revised,102,Mystery,284
+1027,Winter Garden Revised,102,History,199
+1028,Open Roads Expanded,102,Technology,380
+1029,Blue Horizon Revised,102,Science,399
+1030,Simple Systems Illustrated,102,History,562
+1031,Open Roads Illustrated,102,Mystery,297
+1032,The Second Question Illustrated,102,Science,141
+1033,Small Worlds,103,Mystery,519
+1034,The Data Trail Illustrated,103,Fiction,234
+1035,Across the Fields Expanded,103,Science,216
+1036,The Long River Revised,103,Fiction,321
+1037,The Far Shore Illustrated,103,Biography,248
+1038,Quiet Machines New Edition,103,Mystery,481
+1039,Hidden Signals Expanded,103,Science,161
+1040,The Cedar Room New Edition,103,Fiction,241
+1041,Open Roads Revised,103,Biography,495
+1042,The Far Shore New Edition,103,Fiction,340
+1043,The Long River Expanded,103,Fiction,410
+1044,The Long River,201,Science,290
+1045,Ordinary Wonders Expanded,201,Biography,174
+1046,Across the Fields New Edition,201,Mystery,318
+1047,The Glass Map New Edition,201,Science,399
+1048,Prairie Light Revised,201,Technology,445
+1049,The Second Question New Edition,201,Fiction,370
+1050,Ordinary Wonders Expanded,201,Technology,508
+1051,Winter Garden Expanded,201,Technology,221
+1052,Prairie Light New Edition,201,Fiction,496
+1053,A Measure of Time New Edition,201,Fiction,473
+1054,A Better Measure,202,Fiction,504
+1055,The Second Question Expanded,202,Science,438
+1056,Signals and Stories Expanded,202,Biography,303
+1057,The Long River Revised,202,Biography,592
+1058,A Better Measure Illustrated,202,History,609
+1059,Across the Fields Expanded,202,Technology,570
+1060,Quiet Machines Revised,202,Mystery,223
+1061,Open Roads Expanded,202,Mystery,144
+1062,A Measure of Time New Edition,202,Fiction,586
+1063,Common Ground Illustrated,202,Technology,426
+1064,A Better Measure Expanded,202,Mystery,121
+1065,Blue Horizon Expanded,202,Fiction,219
+1066,Signals and Stories Illustrated,202,Fiction,483
+1067,The Paper Bridge New Edition,202,Science,323
+1068,Ordinary Wonders New Edition,202,Science,466
+1069,The Far Shore New Edition,202,Mystery,461
+1070,Signals and Stories,203,Fiction,350
+1071,The Paper Bridge Revised,203,Technology,312
+1072,A Measure of Time Illustrated,203,Biography,568
+1073,The Second Question Illustrated,203,Mystery,572
+1074,A Measure of Time New Edition,203,Science,475
+1075,Open Roads Revised,203,Biography,482
+1076,The Useful Unknown Illustrated,203,Mystery,129
+1077,Across the Fields Revised,203,Biography,342
+1078,Common Ground New Edition,203,Technology,208
+1079,The Glass Map,301,Science,548
+1080,Patterns in Stone Expanded,301,Technology,311
+1081,Patterns in Stone New Edition,301,Technology,343
+1082,A Measure of Time Illustrated,301,Mystery,411
+1083,Simple Systems Illustrated,301,History,562
+1084,The Useful Unknown Revised,301,Fiction,496
+1085,Prairie Light Illustrated,301,History,226
+1086,Prairie Light Revised,301,Fiction,377
+1087,Prairie Light Illustrated,301,Mystery,385
+1088,Open Roads Revised,301,Technology,313
+1089,Ordinary Wonders Revised,301,Biography,296
+1090,The Useful Unknown Illustrated,301,Mystery,139
+1091,Ordinary Wonders Illustrated,301,History,527
+1092,Patterns in Stone Revised,301,Science,382
+1093,Hidden Signals New Edition,301,Technology,620
+1094,Hidden Signals Expanded,301,Fiction,558
+1095,The Paper Bridge New Edition,301,Fiction,171
+1096,Hidden Signals Revised,301,Biography,235
+1097,Simple Systems New Edition,301,Biography,533
+1098,A Better Measure New Edition,301,Science,447
+1099,Small Worlds,302,Science,541
+1100,Blue Horizon Illustrated,302,History,370
+1101,The Useful Unknown Illustrated,302,History,540
+1102,Signals and Stories Illustrated,302,History,610
+1103,Open Roads New Edition,302,Science,282
+1104,The Data Trail Illustrated,302,Fiction,470
+1105,A Measure of Time Expanded,302,Science,144
+1106,Open Roads Expanded,302,Fiction,603
+1107,Across the Fields,303,History,609
+1108,Hidden Signals Expanded,303,Mystery,181
+1109,A Better Measure Illustrated,303,Technology,393
+1110,Signals and Stories New Edition,303,Science,275
+1111,The Last Orchard Expanded,303,Science,265
+1112,The Cedar Room Expanded,303,History,351
+1113,The Paper Bridge Illustrated,303,Technology,327
+1114,Open Roads New Edition,303,Technology,221
+1115,Quiet Machines New Edition,303,Technology,606
+1116,The Glass Map New Edition,303,Biography,391
+1117,Northern Skies New Edition,303,Technology,617
+1118,Prairie Light New Edition,303,History,377
+1119,Learning to See New Edition,303,History,534
+1120,The Glass Map,304,Biography,566
+1121,The Last Orchard New Edition,304,Mystery,392
+1122,Simple Systems New Edition,304,Technology,455
+1123,Across the Fields New Edition,304,History,508
+1124,Small Worlds Illustrated,304,Science,244
+1125,Quiet Machines Revised,304,Mystery,212
+1126,The Paper Bridge Revised,304,Science,362
+1127,The Useful Unknown Expanded,304,Fiction,120
+1128,Learning to See Expanded,304,History,525
+1129,The Last Orchard Revised,304,Technology,333
+1130,Blue Horizon Expanded,304,Technology,318
+1131,The Last Orchard Expanded,304,Mystery,447
+1132,Simple Systems Expanded,304,Technology,514
+1133,Ordinary Wonders Expanded,304,Science,194
+1134,Quiet Machines New Edition,304,Science,386
+1135,Prairie Light New Edition,304,Mystery,366
+1136,The Last Orchard New Edition,304,Science,231
+1137,The Glass Map,401,History,309
+1138,Patterns in Stone Expanded,401,History,600
+1139,Open Roads New Edition,401,Science,444
+1140,Blue Horizon Expanded,401,History,189
+1141,The Glass Map Illustrated,401,Mystery,194
+1142,The Useful Unknown Expanded,401,Biography,125
+1143,The Long River Revised,401,History,588
+1144,Patterns in Stone Illustrated,401,Science,501
+1145,Northern Skies Revised,401,History,519
+1146,The Cedar Room Revised,401,Fiction,591
+1147,Hidden Signals Revised,401,Biography,261
+1148,Northern Skies Illustrated,401,Mystery,353
+1149,Quiet Machines,402,History,133
+1150,Blue Horizon Expanded,402,Mystery,355
+1151,The Data Trail Illustrated,402,Technology,288
+1152,Open Roads Illustrated,402,Technology,220
+1153,Ordinary Wonders Illustrated,402,Fiction,511
+1154,The Long River New Edition,402,History,350
+1155,Open Roads Expanded,402,Science,488
+1156,Simple Systems Revised,402,Biography,342
+1157,Hidden Signals Expanded,402,History,221
+1158,Winter Garden Expanded,402,Technology,120
+1159,The Second Question Revised,402,Biography,255
+1160,Across the Fields New Edition,402,Mystery,586
+1161,Hidden Signals New Edition,402,Mystery,608
+1162,Open Roads Revised,402,History,187
+1163,Ordinary Wonders Revised,402,Science,365
+1164,Northern Skies Illustrated,402,Technology,207
+1165,Winter Garden Revised,402,Mystery,573
+1166,Ordinary Wonders Expanded,402,Technology,469
+1167,Blue Horizon New Edition,402,Fiction,438

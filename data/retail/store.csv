@@ -1,0 +1,16 @@
+store_id,store_name,region_id,store_type,square_feet
+101,River Market,1,Urban,18000
+102,Prairie Center,1,Suburban,24500
+103,Lakeside Commons,1,Suburban,22000
+201,Harbor Point,2,Urban,19500
+202,Maple Square,2,Suburban,26000
+203,Pine Crossing,2,Small Town,14500
+301,Northgate,3,Urban,21000
+302,Cedar Plaza,3,Suburban,23500
+401,Magnolia Market,4,Urban,20500
+402,Peachtree Center,4,Suburban,27500
+403,Bayou Crossing,4,Small Town,15000
+404,Sunrise Commons,4,Suburban,25000
+501,Canyon Center,5,Urban,22500
+502,Coastal Plaza,5,Suburban,28000
+503,Desert Springs,5,Small Town,16000

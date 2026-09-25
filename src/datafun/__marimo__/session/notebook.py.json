@@ -1,0 +1,106 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.25.0",
+    "script_metadata_hash": "20471874d2fd222de3934fcc13ac4583"
+  },
+  "cells": [
+    {
+      "id": "setup",
+      "code_hash": "1ad6b525df7ce3126e25162f452d9c83",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "59dffdb5224d79901687d0c36643324d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"reactive-related-data-analysis\">Reactive Related Data Analysis</h1>\n<span class=\"paragraph\">Explore related business data interactively.</span>\n<span class=\"paragraph\">The data has two one-to-many relationships:</span>\n<span class=\"paragraph\"><strong>region \u2192 store \u2192 employee</strong></span>\n<span class=\"paragraph\"><strong>Analysis:</strong> Calculate the average number of employees\nper store in each region.</span>\n<span class=\"paragraph\">SQL joins the related tables and calculates the\naverage employees per store.</span>\n<span class=\"paragraph\">The SQL query result is returned as a pandas DataFrame,\nand Python visualizes the results.</span>\n<span class=\"paragraph\">| <a href=\"https://github.com/denisecase/datafun-05-sql/blob/main/src/datafun/notebook.py\" rel=\"noopener noreferrer\" target=\"_blank\">Project Source</a>\n| <a href=\"https://denisecase.github.io/datafun-05-sql/\" rel=\"noopener noreferrer\" target=\"_blank\">Project Docs</a></span>\n<hr /></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "08a0c030439b396273747963fbdb42e0",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "78b8c08cf2f6644e315b0d03c3757171",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Database connected and tables loaded.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "92e4da4fff2c50f90af262d7810af411",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "a50509bcfd7560439867f00e499c955a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"average-employees-per-store-by-region\">Average Employees per Store by Region</h2>\n<span class=\"paragraph\">This analysis compares regions based on the\naverage number of employees working at each store.</span>\n<span class=\"paragraph\">The SQL query calculates:</span>\n<ul>\n<li>Number of stores</li>\n<li>Total number of employees</li>\n<li>Average employees per store</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "4b1383823b72dc85f1a50db41de8cecb",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='PKri-0' random-id='a68579d3-a547-90be-9880-8fdd710a8ddc'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;region_name&#92;&quot;:&#92;&quot;West&#92;&quot;,&#92;&quot;store_count&#92;&quot;:3,&#92;&quot;employee_count&#92;&quot;:38,&#92;&quot;average_employees_per_store&#92;&quot;:12.67},{&#92;&quot;region_name&#92;&quot;:&#92;&quot;South&#92;&quot;,&#92;&quot;store_count&#92;&quot;:4,&#92;&quot;employee_count&#92;&quot;:46,&#92;&quot;average_employees_per_store&#92;&quot;:11.5},{&#92;&quot;region_name&#92;&quot;:&#92;&quot;East&#92;&quot;,&#92;&quot;store_count&#92;&quot;:3,&#92;&quot;employee_count&#92;&quot;:32,&#92;&quot;average_employees_per_store&#92;&quot;:10.67},{&#92;&quot;region_name&#92;&quot;:&#92;&quot;North&#92;&quot;,&#92;&quot;store_count&#92;&quot;:2,&#92;&quot;employee_count&#92;&quot;:21,&#92;&quot;average_employees_per_store&#92;&quot;:10.5},{&#92;&quot;region_name&#92;&quot;:&#92;&quot;Central&#92;&quot;,&#92;&quot;store_count&#92;&quot;:3,&#92;&quot;employee_count&#92;&quot;:31,&#92;&quot;average_employees_per_store&#92;&quot;:10.33}]&quot;' data-total-rows='5' data-total-columns='4' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='false' data-page-size='10' data-field-types='[[&quot;region_name&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;store_count&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;employee_count&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;average_employees_per_store&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element><marimo-mime-renderer data-mime='&quot;application/vnd.vegalite.v6+json&quot;' data-data='&quot;{&#92;n  &#92;&quot;&#36;schema&#92;&quot;: &#92;&quot;https://vega.github.io/schema/vega-lite/v6.4.1.json&#92;&quot;,&#92;n  &#92;&quot;config&#92;&quot;: {&#92;n    &#92;&quot;view&#92;&quot;: {&#92;n      &#92;&quot;continuousHeight&#92;&quot;: 300,&#92;n      &#92;&quot;continuousWidth&#92;&quot;: 300&#92;n    }&#92;n  },&#92;n  &#92;&quot;data&#92;&quot;: {&#92;n    &#92;&quot;name&#92;&quot;: &#92;&quot;data-bcd224e41a447bceb1fe8a1a98c34469&#92;&quot;&#92;n  },&#92;n  &#92;&quot;datasets&#92;&quot;: {&#92;n    &#92;&quot;data-bcd224e41a447bceb1fe8a1a98c34469&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;average_employees_per_store&#92;&quot;: 12.67,&#92;n        &#92;&quot;employee_count&#92;&quot;: 38,&#92;n        &#92;&quot;region_name&#92;&quot;: &#92;&quot;West&#92;&quot;,&#92;n        &#92;&quot;store_count&#92;&quot;: 3&#92;n      },&#92;n      {&#92;n        &#92;&quot;average_employees_per_store&#92;&quot;: 11.5,&#92;n        &#92;&quot;employee_count&#92;&quot;: 46,&#92;n        &#92;&quot;region_name&#92;&quot;: &#92;&quot;South&#92;&quot;,&#92;n        &#92;&quot;store_count&#92;&quot;: 4&#92;n      },&#92;n      {&#92;n        &#92;&quot;average_employees_per_store&#92;&quot;: 10.67,&#92;n        &#92;&quot;employee_count&#92;&quot;: 32,&#92;n        &#92;&quot;region_name&#92;&quot;: &#92;&quot;East&#92;&quot;,&#92;n        &#92;&quot;store_count&#92;&quot;: 3&#92;n      },&#92;n      {&#92;n        &#92;&quot;average_employees_per_store&#92;&quot;: 10.5,&#92;n        &#92;&quot;employee_count&#92;&quot;: 21,&#92;n        &#92;&quot;region_name&#92;&quot;: &#92;&quot;North&#92;&quot;,&#92;n        &#92;&quot;store_count&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;average_employees_per_store&#92;&quot;: 10.33,&#92;n        &#92;&quot;employee_count&#92;&quot;: 31,&#92;n        &#92;&quot;region_name&#92;&quot;: &#92;&quot;Central&#92;&quot;,&#92;n        &#92;&quot;store_count&#92;&quot;: 3&#92;n      }&#92;n    ]&#92;n  },&#92;n  &#92;&quot;encoding&#92;&quot;: {&#92;n    &#92;&quot;tooltip&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;region_name&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;Region&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;store_count&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;Stores&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;employee_count&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;Employees&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;average_employees_per_store&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;Average Employees per Store&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      }&#92;n    ],&#92;n    &#92;&quot;x&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;region_name&#92;&quot;,&#92;n      &#92;&quot;sort&#92;&quot;: &#92;&quot;-y&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: &#92;&quot;Region&#92;&quot;,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n    },&#92;n    &#92;&quot;y&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;average_employees_per_store&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: &#92;&quot;Average Employees per Store&#92;&quot;,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n    }&#92;n  },&#92;n  &#92;&quot;height&#92;&quot;: 400,&#92;n  &#92;&quot;mark&#92;&quot;: {&#92;n    &#92;&quot;type&#92;&quot;: &#92;&quot;bar&#92;&quot;&#92;n  },&#92;n  &#92;&quot;title&#92;&quot;: &#92;&quot;Average Employees per Store by Region&#92;&quot;,&#92;n  &#92;&quot;usermeta&#92;&quot;: {&#92;n    &#92;&quot;embedOptions&#92;&quot;: {}&#92;n  },&#92;n  &#92;&quot;width&#92;&quot;: &#92;&quot;container&#92;&quot;&#92;n}&quot;'></marimo-mime-renderer></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

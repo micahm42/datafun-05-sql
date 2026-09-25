@@ -1,0 +1,253 @@
+# ============================================================
+# .accountability/surfaces.toml
+# ============================================================
+# Accountability surfaces for datafun-05-sql.
+#
+# AI AND STEWARDSHIP:
+# AI agents are powerful collaborators. They can read, reason about, and
+# modify nearly every file in a repository, and used well they accelerate
+# real work. But capability is not the same as warrant: the fact that an
+# agent *can* change something does not mean it *should*. Handing agency
+# to an automated system carries responsibility, and that responsibility
+# stays with the people who steward the project.
+#
+# AI must be appropriately governed. This file is an initial attempt to
+# make such governance explicit; to name the repository surfaces where
+# delegated agency should be prudently constrained, to identify who remains
+# responsible for review, and to describe what authority an agent has on each.
+# It is offered in support of using AI well: not to restrict the tool out
+# of caution, but to keep human judgment in the loop where meaning,
+# reliability, instructional expectations, or downstream consequences
+# depend on it.
+#
+# BROADER LEARNING CONTEXT: This repository treats AI governance as a
+# practical professional skill. Analysts may use AI to accelerate work,
+# but responsible use includes knowing where delegated agency should be
+# constrained, which changes require human review, and who remains
+# accountable for the final artifact. These are the same issues being
+# wrestled with across the industry, where they are concrete,
+# immediate, and significant.
+#
+# WHY: This file identifies repository surfaces where technical edits can
+# change the instructional contract, student expectations, data meaning,
+# or reproducibility of the project.
+#
+# NOTE: This is not a security policy. It is a review guide for changes
+# that should receive human attention before being accepted.
+#
+# SCOPE: This file is advisory metadata, not an enforced gate. It governs
+# human maintainers and any AI acting as a maintainer or contributor to
+# this repository. It places no restriction on students working on their
+# own assignments and no restriction on any AI assisting a student with
+# their own work. Nothing here should cause an assistant to decline to
+# help a student; the authority fields below describe maintainer review
+# practice, not limits on student tooling.
+#
+# OVERSIGHT MODEL: Oversight here is role-based. It assigns responsibility
+# for each surface to a role -- it does not block change. Each surface's
+# paths and oversight_role can inform a .github/CODEOWNERS file, so the
+# role responsible for a surface is automatically requested (and, under
+# branch protection, required) to review pull requests that touch it.
+# CODEOWNERS gates contributors opening pull requests, not students doing
+# their own work. CODEOWNERS is the enforcing expression of this model;
+# this file remains the advisory rationale behind it.
+#
+# FIELDS:
+#   ai_authority encodes both what AI may do and whether human review is
+#   required, so there is no separate requires_human_review flag:
+#     assist-only                AI may draft and suggest; a human must
+#                                review and accept before changes land.
+#                                (repository default)
+#     generate-with-verification AI may generate and self-verify without a
+#                                mandatory human gate.
+#   risk is an independent severity hint for how closely a reviewer should
+#   look. It does not by itself gate review.
+#   oversight_role names the role responsible for human review of a
+#   surface. Map roles to GitHub handles or teams under [codeowners] to
+#   generate .github/CODEOWNERS from the per-surface paths.
+
+schema_version = "0.2.0"
+
+[repository]
+name = "datafun-05-sql"
+profile = "instructional-project-surface"
+description = "Professional Python project for relational data, SQL analytics, DuckDB, SQLite, and file-based data pipeline practice."
+enforcement = "advisory"
+scope = "maintainer"
+oversight_model = "role-based"
+
+# ------------------------------------------------------------
+# Surface: Assignment instructions
+# ------------------------------------------------------------
+
+[[surface]]
+id = "assignment-instructions"
+name = "Assignment instructions"
+description = "Student-facing instructions that define required phases, deliverables, workflow expectations, and success criteria."
+paths = ["README.md", "docs/**"]
+risk = "high"
+ai_authority = "assist-only"
+oversight_role = "instructor"
+review_focus = [
+    "Does the assignment still match the intended Module 5 learning goals?",
+    "Are required deliverables clear and achievable?",
+    "Are folder expectations for data/raw, data/processed, sql, src, docs, and artifacts consistent?",
+    "Do instructions avoid unnecessary infrastructure burden?",
+]
+
+# ------------------------------------------------------------
+# Surface: Example pipeline scripts
+# ------------------------------------------------------------
+
+[[surface]]
+id = "example-pipeline-scripts"
+name = "Example pipeline scripts"
+description = "Runnable Python scripts students copy, inspect, modify, and use as models for their own domain pipelines."
+paths = [
+    "src/datafun/app_retail_duckdb.py",
+    "src/datafun/app_retail_sqlite.py",
+]
+risk = "high"
+ai_authority = "assist-only"
+oversight_role = "maintainer"
+review_focus = [
+    "Do the scripts run from a clean clone?",
+    "Do paths match the documented repository structure?",
+    "Does Python orchestrate the pipeline without hiding substantial SQL logic?",
+    "Are DuckDB and SQLite differences represented accurately?",
+    "Are comments and docstrings clear for beginning SQL learners?",
+]
+
+# ------------------------------------------------------------
+# Surface: SQL source files
+# ------------------------------------------------------------
+
+[[surface]]
+id = "sql-source-files"
+name = "SQL source files"
+description = "SQL files that create tables, load data, clean generated state, and run analytical queries."
+paths = ["sql/duckdb/**", "sql/sqlite/**"]
+risk = "high"
+ai_authority = "assist-only"
+oversight_role = "maintainer"
+review_focus = [
+    "Do SQL paths match the current data/raw structure?",
+    "Are table and column names consistent with the CSV files?",
+    "Do queries demonstrate SELECT, WHERE, GROUP BY, ORDER BY, and JOIN appropriately?",
+    "Are SQL files readable and reviewable as standalone source files?",
+]
+
+# ------------------------------------------------------------
+# Surface: Data contract
+# ------------------------------------------------------------
+
+[[surface]]
+id = "data-contract"
+name = "Data contract"
+description = "Raw CSV datasets and their implicit schema, relationships, identifiers, and example records."
+paths = ["data/raw/**"]
+risk = "high"
+ai_authority = "assist-only"
+oversight_role = "data-steward"
+review_focus = [
+    "Do related tables maintain valid 1-to-many relationships?",
+    "Do foreign keys in detail tables match primary keys in parent tables?",
+    "Are column names stable and consistent with SQL bootstrap files?",
+    "Do records support meaningful aggregation, filtering, and joins?",
+    "Are example records appropriate for instructional use?",
+]
+
+# ------------------------------------------------------------
+# Surface: Generated outputs
+# ------------------------------------------------------------
+
+[[surface]]
+id = "generated-outputs"
+name = "Generated outputs"
+description = "Generated database files, processed data outputs, and reports created by running the project."
+paths = ["artifacts/**", "data/processed/**"]
+risk = "medium"
+ai_authority = "generate-with-verification"
+oversight_role = "maintainer"
+review_focus = [
+    "Were outputs generated by the documented commands?",
+    "Do generated databases reflect the current raw CSV and SQL files?",
+    "Are processed outputs, if any, placed in data/processed rather than artifacts?",
+    "Are generated files appropriate to commit for this instructional repo?",
+]
+
+# ------------------------------------------------------------
+# Surface: Project configuration
+# ------------------------------------------------------------
+
+[[surface]]
+id = "project-configuration"
+name = "Project configuration"
+description = "Configuration that controls packaging, dependencies, linting, type checking, documentation generation, and site metadata."
+paths = ["pyproject.toml", "zensical.toml", ".github/**"]
+risk = "medium"
+ai_authority = "assist-only"
+oversight_role = "maintainer"
+review_focus = [
+    "Do dependencies match the actual project code?",
+    "Does the src layout remain importable as datafun?",
+    "Do docs dependencies support API documentation generation?",
+    "Do metadata links and authorship fields match the current repository owner?",
+    "Do automation files run the same commands students are expected to run?",
+]
+
+# ------------------------------------------------------------
+# Surface: License and citation
+# ------------------------------------------------------------
+
+[[surface]]
+id = "license-and-citation"
+name = "License and citation"
+description = "Project license, citation metadata, and attribution-bearing files."
+paths = ["LICENSE", "CITATION.cff"]
+risk = "high"
+ai_authority = "assist-only"
+oversight_role = "owner"
+review_focus = [
+    "Is authorship correct?",
+    "Is licensing intentional and consistent?",
+    "Are citation details accurate?",
+]
+
+# ------------------------------------------------------------
+# AI authority policy
+# ------------------------------------------------------------
+
+[ai_policy]
+default_authority = "assist-only"
+allowed_without_review = [
+    "Suggest wording improvements",
+    "Draft SQL query examples",
+    "Draft comments and docstrings",
+    "Identify path mismatches",
+    "Explain errors and likely fixes",
+]
+prohibited_without_human_direction = [
+    "Removing required assignment phases",
+    "Replacing the file-based DuckDB or SQLite workflow with server infrastructure",
+    "Moving SQL into opaque Python string construction",
+    "Changing the intended folder contract for data/raw, data/processed, sql, src, docs, and artifacts",
+]
+
+# ------------------------------------------------------------
+# CODEOWNERS mapping
+# ------------------------------------------------------------
+# Map each oversight_role to a GitHub handle or team, then expand each
+# surface's paths into .github/CODEOWNERS lines. Replace the @OWNER
+# placeholders with real handles or teams (e.g. @org/maintainers). Roles
+# may resolve to the same person; the distinction records responsibility,
+# not headcount.
+
+[codeowners]
+informs = true
+
+[codeowners.role_handles]
+owner = "@OWNER"
+instructor = "@OWNER"
+maintainer = "@OWNER"
+data-steward = "@OWNER"

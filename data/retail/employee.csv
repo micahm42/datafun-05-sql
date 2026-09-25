@@ -1,0 +1,169 @@
+employee_id,employee_name,store_id,role,years_employed
+1001,Dakota Irwin,101,Manager,7
+1002,Harper Kim,101,Manager,7
+1003,Hayden Singh,101,Supervisor,10
+1004,Jordan Bennett,101,Senior Associate,9
+1005,Kai Turner,101,Supervisor,10
+1006,Skyler Diaz,101,Manager,5
+1007,Quinn Owens,101,Associate,1
+1008,Avery Jensen,101,Associate,2
+1009,Emerson Diaz,102,Manager,9
+1010,Parker Irwin,102,Manager,0
+1011,Kai Jensen,102,Associate,4
+1012,Finley Lewis,102,Associate,8
+1013,Cameron Martin,102,Manager,9
+1014,Kendall Martin,102,Associate,4
+1015,Avery Foster,102,Associate,9
+1016,Rowan Kim,102,Senior Associate,10
+1017,Avery Reed,102,Supervisor,5
+1018,Riley Jensen,102,Manager,1
+1019,Jamie Martin,102,Supervisor,8
+1020,Reese Diaz,102,Supervisor,7
+1021,Cameron Young,102,Manager,6
+1022,Jamie Irwin,103,Manager,10
+1023,Finley Singh,103,Supervisor,2
+1024,Robin Patel,103,Supervisor,10
+1025,Casey Irwin,103,Supervisor,6
+1026,Avery Foster,103,Associate,4
+1027,Avery Irwin,103,Associate,7
+1028,Cameron Owens,103,Senior Associate,3
+1029,Casey Singh,103,Senior Associate,2
+1030,Sage Diaz,103,Associate,10
+1031,Parker Irwin,103,Associate,7
+1032,Jamie Adams,201,Manager,10
+1033,Quinn Ellis,201,Associate,7
+1034,Avery Patel,201,Supervisor,3
+1035,Robin Singh,201,Senior Associate,1
+1036,Skyler Singh,201,Senior Associate,3
+1037,Casey Young,201,Associate,2
+1038,Rowan Martin,201,Supervisor,5
+1039,Dakota Walker,201,Supervisor,3
+1040,Rowan Bennett,201,Associate,8
+1041,Kai Owens,201,Associate,0
+1042,Blake Owens,201,Associate,2
+1043,Parker Reed,202,Manager,9
+1044,Hayden Jensen,202,Associate,6
+1045,Quinn Carter,202,Manager,1
+1046,Drew Kim,202,Associate,7
+1047,Jamie Ellis,202,Associate,6
+1048,Casey Jensen,202,Senior Associate,0
+1049,Rowan Ellis,202,Associate,10
+1050,Finley Carter,202,Supervisor,3
+1051,Rowan Hayes,202,Senior Associate,3
+1052,Finley Hayes,202,Associate,8
+1053,Sage Irwin,202,Associate,9
+1054,Casey Kim,202,Supervisor,4
+1055,Harper Turner,202,Supervisor,1
+1056,Cameron Adams,202,Associate,6
+1057,Quinn Nguyen,202,Senior Associate,2
+1058,Quinn Reed,203,Manager,11
+1059,Skyler Walker,203,Associate,10
+1060,Harper Kim,203,Manager,1
+1061,Blake Owens,203,Associate,3
+1062,Jamie Jensen,203,Associate,3
+1063,Logan Patel,203,Manager,6
+1064,Finley Irwin,301,Manager,8
+1065,Hayden Irwin,301,Associate,10
+1066,Cameron Kim,301,Manager,5
+1067,Sage Garcia,301,Associate,1
+1068,Riley Patel,301,Supervisor,2
+1069,Skyler Turner,301,Supervisor,2
+1070,Rowan Jensen,301,Manager,5
+1071,Finley Adams,301,Manager,7
+1072,Emerson Young,301,Senior Associate,9
+1073,Jamie Hayes,301,Associate,6
+1074,Reese Nguyen,301,Associate,1
+1075,Riley Carter,301,Associate,7
+1076,Quinn Walker,302,Manager,10
+1077,Quinn Foster,302,Associate,5
+1078,Jordan Zimmer,302,Senior Associate,1
+1079,Harper Martin,302,Senior Associate,4
+1080,Quinn Diaz,302,Associate,1
+1081,Logan Foster,302,Associate,5
+1082,Rowan Irwin,302,Manager,3
+1083,Emerson Diaz,302,Associate,5
+1084,Casey Bennett,302,Associate,7
+1085,Skyler Owens,401,Manager,10
+1086,Finley Jensen,401,Supervisor,10
+1087,Drew Singh,401,Supervisor,10
+1088,Rowan Lewis,401,Manager,1
+1089,Harper Owens,401,Associate,5
+1090,Logan Owens,401,Supervisor,10
+1091,Dakota Hayes,401,Associate,1
+1092,Parker Owens,401,Senior Associate,9
+1093,Logan Patel,401,Supervisor,1
+1094,Kai Young,401,Associate,5
+1095,Riley Nguyen,402,Manager,11
+1096,Reese Turner,402,Manager,7
+1097,Rowan Lewis,402,Associate,5
+1098,Jordan Bennett,402,Supervisor,3
+1099,Finley Young,402,Senior Associate,9
+1100,Jordan Adams,402,Supervisor,9
+1101,Skyler Lewis,402,Senior Associate,9
+1102,Dakota Carter,402,Associate,8
+1103,Harper Reed,402,Associate,9
+1104,Avery Foster,402,Manager,10
+1105,Morgan Hayes,402,Associate,10
+1106,Reese Young,402,Associate,10
+1107,Sage Turner,402,Associate,3
+1108,Reese Jensen,402,Associate,5
+1109,Logan Singh,402,Associate,5
+1110,Avery Bennett,402,Associate,7
+1111,Hayden Reed,402,Associate,6
+1112,Parker Reed,403,Manager,12
+1113,Reese Foster,403,Senior Associate,5
+1114,Skyler Singh,403,Associate,10
+1115,Cameron Diaz,403,Associate,8
+1116,Drew Zimmer,403,Associate,3
+1117,Jamie Owens,404,Manager,11
+1118,Emerson Garcia,404,Senior Associate,5
+1119,Jordan Martin,404,Associate,1
+1120,Reese Patel,404,Associate,9
+1121,Avery Foster,404,Supervisor,1
+1122,Emerson Garcia,404,Associate,0
+1123,Avery Patel,404,Associate,5
+1124,Quinn Reed,404,Supervisor,9
+1125,Harper Ellis,404,Supervisor,7
+1126,Jordan Adams,404,Associate,2
+1127,Casey Ellis,404,Associate,7
+1128,Robin Kim,404,Associate,3
+1129,Logan Turner,404,Manager,10
+1130,Emerson Reed,404,Associate,6
+1131,Hayden Turner,501,Manager,3
+1132,Kendall Carter,501,Associate,9
+1133,Robin Foster,501,Supervisor,8
+1134,Emerson Diaz,501,Associate,0
+1135,Avery Kim,501,Associate,7
+1136,Blake Nguyen,501,Manager,0
+1137,Sage Garcia,501,Associate,3
+1138,Kai Zimmer,501,Associate,6
+1139,Riley Hayes,501,Associate,6
+1140,Quinn Irwin,501,Associate,5
+1141,Jordan Garcia,501,Associate,1
+1142,Robin Owens,501,Supervisor,4
+1143,Avery Owens,501,Supervisor,3
+1144,Casey Patel,502,Manager,6
+1145,Skyler Ellis,502,Associate,10
+1146,Rowan Adams,502,Supervisor,8
+1147,Finley Zimmer,502,Associate,10
+1148,Rowan Zimmer,502,Senior Associate,9
+1149,Kai Martin,502,Associate,7
+1150,Casey Adams,502,Associate,1
+1151,Parker Garcia,502,Supervisor,1
+1152,Hayden Lewis,502,Supervisor,0
+1153,Morgan Foster,502,Associate,2
+1154,Casey Diaz,502,Senior Associate,5
+1155,Morgan Young,502,Associate,0
+1156,Emerson Patel,502,Senior Associate,0
+1157,Drew Adams,502,Supervisor,10
+1158,Sage Walker,502,Associate,1
+1159,Morgan Nguyen,502,Associate,3
+1160,Jamie Reed,502,Associate,10
+1161,Robin Bennett,502,Senior Associate,3
+1162,Skyler Walker,503,Manager,12
+1163,Reese Jensen,503,Senior Associate,3
+1164,Robin Bennett,503,Manager,1
+1165,Finley Bennett,503,Associate,8
+1166,Robin Hayes,503,Senior Associate,8
+1167,Avery Owens,503,Manager,2
+1168,Dakota Irwin,503,Associate,0

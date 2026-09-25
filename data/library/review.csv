@@ -1,0 +1,187 @@
+review_id,book_id,rating,review_text
+5001,1001,5,Interesting but uneven.
+5002,1003,5,A strong recommendation.
+5003,1003,3,Not quite what I expected.
+5004,1005,4,Clear and engaging.
+5005,1006,5,Not quite what I expected.
+5006,1006,3,Thought-provoking.
+5007,1006,2,Not quite what I expected.
+5008,1007,4,Not quite what I expected.
+5009,1007,4,Not quite what I expected.
+5010,1008,4,Clear and engaging.
+5011,1008,2,Thought-provoking.
+5012,1008,2,Clear and engaging.
+5013,1009,3,Useful and easy to follow.
+5014,1010,4,A strong recommendation.
+5015,1010,2,Not quite what I expected.
+5016,1012,4,Useful and easy to follow.
+5017,1012,2,Useful and easy to follow.
+5018,1014,2,Interesting but uneven.
+5019,1014,4,Clear and engaging.
+5020,1016,2,Clear and engaging.
+5021,1018,2,Clear and engaging.
+5022,1019,4,Interesting but uneven.
+5023,1022,2,Useful and easy to follow.
+5024,1023,3,Interesting but uneven.
+5025,1024,4,Clear and engaging.
+5026,1024,4,Useful and easy to follow.
+5027,1029,4,Not quite what I expected.
+5028,1030,5,Thought-provoking.
+5029,1033,3,Useful and easy to follow.
+5030,1033,5,A strong recommendation.
+5031,1033,2,A strong recommendation.
+5032,1034,5,A strong recommendation.
+5033,1035,5,Thought-provoking.
+5034,1035,4,Interesting but uneven.
+5035,1036,4,Clear and engaging.
+5036,1037,4,Thought-provoking.
+5037,1039,5,Thought-provoking.
+5038,1039,2,Clear and engaging.
+5039,1040,4,Thought-provoking.
+5040,1042,3,Clear and engaging.
+5041,1042,2,Not quite what I expected.
+5042,1043,4,Useful and easy to follow.
+5043,1044,5,Not quite what I expected.
+5044,1044,2,A strong recommendation.
+5045,1045,3,Not quite what I expected.
+5046,1046,5,A strong recommendation.
+5047,1046,3,Clear and engaging.
+5048,1047,2,Thought-provoking.
+5049,1048,3,Thought-provoking.
+5050,1049,3,Interesting but uneven.
+5051,1049,5,Not quite what I expected.
+5052,1051,4,Clear and engaging.
+5053,1051,5,Useful and easy to follow.
+5054,1052,4,Not quite what I expected.
+5055,1052,2,Thought-provoking.
+5056,1052,3,Clear and engaging.
+5057,1053,2,Thought-provoking.
+5058,1054,5,Thought-provoking.
+5059,1054,5,Not quite what I expected.
+5060,1057,4,Useful and easy to follow.
+5061,1058,5,Interesting but uneven.
+5062,1061,2,Not quite what I expected.
+5063,1062,2,Clear and engaging.
+5064,1062,3,Interesting but uneven.
+5065,1063,4,Clear and engaging.
+5066,1063,3,Interesting but uneven.
+5067,1063,2,Not quite what I expected.
+5068,1064,3,Not quite what I expected.
+5069,1064,3,Useful and easy to follow.
+5070,1064,3,Clear and engaging.
+5071,1065,4,Interesting but uneven.
+5072,1065,4,Clear and engaging.
+5073,1066,3,Clear and engaging.
+5074,1067,2,Clear and engaging.
+5075,1067,5,Useful and easy to follow.
+5076,1067,4,Thought-provoking.
+5077,1069,4,Thought-provoking.
+5078,1069,3,Not quite what I expected.
+5079,1069,5,Clear and engaging.
+5080,1070,2,Interesting but uneven.
+5081,1070,2,Thought-provoking.
+5082,1072,4,Clear and engaging.
+5083,1072,2,Interesting but uneven.
+5084,1072,4,Not quite what I expected.
+5085,1074,3,A strong recommendation.
+5086,1075,4,Not quite what I expected.
+5087,1076,5,Not quite what I expected.
+5088,1080,4,Thought-provoking.
+5089,1080,4,Interesting but uneven.
+5090,1081,4,Useful and easy to follow.
+5091,1081,4,Not quite what I expected.
+5092,1081,5,Clear and engaging.
+5093,1082,5,Interesting but uneven.
+5094,1084,2,Not quite what I expected.
+5095,1084,2,Useful and easy to follow.
+5096,1085,2,Interesting but uneven.
+5097,1086,2,Thought-provoking.
+5098,1086,4,Thought-provoking.
+5099,1087,2,Useful and easy to follow.
+5100,1087,5,Useful and easy to follow.
+5101,1088,3,A strong recommendation.
+5102,1089,2,A strong recommendation.
+5103,1090,3,Clear and engaging.
+5104,1090,4,A strong recommendation.
+5105,1092,5,A strong recommendation.
+5106,1093,4,Useful and easy to follow.
+5107,1093,5,Useful and easy to follow.
+5108,1094,2,Useful and easy to follow.
+5109,1094,3,A strong recommendation.
+5110,1096,3,A strong recommendation.
+5111,1096,3,Thought-provoking.
+5112,1097,4,A strong recommendation.
+5113,1098,2,A strong recommendation.
+5114,1099,5,Interesting but uneven.
+5115,1100,2,Useful and easy to follow.
+5116,1101,4,Thought-provoking.
+5117,1101,2,Thought-provoking.
+5118,1102,3,Clear and engaging.
+5119,1102,3,Thought-provoking.
+5120,1104,5,Useful and easy to follow.
+5121,1105,3,Clear and engaging.
+5122,1109,2,Clear and engaging.
+5123,1111,4,Not quite what I expected.
+5124,1111,3,A strong recommendation.
+5125,1112,3,Interesting but uneven.
+5126,1112,3,Clear and engaging.
+5127,1113,3,Useful and easy to follow.
+5128,1117,3,Thought-provoking.
+5129,1117,3,Interesting but uneven.
+5130,1118,3,Useful and easy to follow.
+5131,1119,2,Useful and easy to follow.
+5132,1119,3,Clear and engaging.
+5133,1120,3,Thought-provoking.
+5134,1121,2,Thought-provoking.
+5135,1122,5,Not quite what I expected.
+5136,1123,4,A strong recommendation.
+5137,1123,2,Useful and easy to follow.
+5138,1124,3,Useful and easy to follow.
+5139,1124,5,Useful and easy to follow.
+5140,1126,2,Thought-provoking.
+5141,1127,2,Thought-provoking.
+5142,1130,5,A strong recommendation.
+5143,1130,2,Thought-provoking.
+5144,1133,2,Clear and engaging.
+5145,1135,5,Thought-provoking.
+5146,1135,4,Interesting but uneven.
+5147,1136,2,Not quite what I expected.
+5148,1137,2,Clear and engaging.
+5149,1138,2,A strong recommendation.
+5150,1139,3,Interesting but uneven.
+5151,1139,2,Useful and easy to follow.
+5152,1140,4,Clear and engaging.
+5153,1141,2,Thought-provoking.
+5154,1141,5,A strong recommendation.
+5155,1142,4,Not quite what I expected.
+5156,1143,5,Interesting but uneven.
+5157,1144,3,A strong recommendation.
+5158,1145,4,Thought-provoking.
+5159,1146,4,Not quite what I expected.
+5160,1147,5,Useful and easy to follow.
+5161,1147,5,Interesting but uneven.
+5162,1147,3,Useful and easy to follow.
+5163,1148,2,Useful and easy to follow.
+5164,1149,2,Clear and engaging.
+5165,1149,4,Useful and easy to follow.
+5166,1151,5,Not quite what I expected.
+5167,1151,2,Clear and engaging.
+5168,1151,2,Thought-provoking.
+5169,1152,2,Not quite what I expected.
+5170,1153,2,Not quite what I expected.
+5171,1154,5,Useful and easy to follow.
+5172,1155,2,Not quite what I expected.
+5173,1157,5,Interesting but uneven.
+5174,1157,4,Not quite what I expected.
+5175,1158,5,Interesting but uneven.
+5176,1159,5,Useful and easy to follow.
+5177,1160,4,Not quite what I expected.
+5178,1160,4,Not quite what I expected.
+5179,1161,4,A strong recommendation.
+5180,1161,5,Clear and engaging.
+5181,1161,4,Thought-provoking.
+5182,1163,2,Interesting but uneven.
+5183,1164,3,Interesting but uneven.
+5184,1165,3,Thought-provoking.
+5185,1166,2,Clear and engaging.
+5186,1166,5,A strong recommendation.

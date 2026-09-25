@@ -1,0 +1,1419 @@
+2026-08-25 08:31:36 | INFO | P05 | === RUN START ===
+2026-08-25 08:31:36 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-08-25 08:31:36 | INFO | P05 | repo_dir=datafun-05-sql
+2026-08-25 08:31:36 | INFO | P05 | python=3.14.7
+2026-08-25 08:31:36 | INFO | P05 | os=Windows 11
+2026-08-25 08:31:36 | INFO | P05 | shell=powershell
+2026-08-25 08:31:36 | INFO | P05 | cwd=.
+2026-08-25 08:31:36 | INFO | P05 | github_actions=False
+2026-08-25 08:31:36 | INFO | P05 | ===================================
+2026-08-25 08:31:36 | INFO | P05 | START main()
+2026-08-25 08:31:36 | INFO | P05 | ===================================
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 01. LOAD the related tables.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | regions file = data\retail\region.csv
+2026-08-25 08:31:36 | INFO | P05 | stores file = data\retail\store.csv
+2026-08-25 08:31:36 | INFO | P05 | employees file = data\retail\employee.csv
+2026-08-25 08:31:36 | INFO | P05 | Related tables loaded successfully.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | Regions grain: one business region
+2026-08-25 08:31:36 | INFO | P05 | Stores grain: one store
+2026-08-25 08:31:36 | INFO | P05 | Employees grain: one employee
+2026-08-25 08:31:36 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-08-25 08:31:36 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-08-25 08:31:36 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-08-25 08:31:36 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 03. CREATE a SQLite database.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-08-25 08:31:36 | INFO | P05 | SQLite database connection created.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | Related tables loaded into SQLite.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-08-25 08:31:36 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-08-25 08:31:36 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-08-25 08:31:36 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | 08. DISPLAY the visualization.
+2026-08-25 08:31:36 | INFO | P05 | -------------------------------
+2026-08-25 08:31:36 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-08-25 08:31:36 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-08-25 08:31:36 | INFO | P05 | ===================================
+2026-08-25 08:31:36 | INFO | P05 | END main() - Executed successfully!
+2026-08-25 08:31:36 | INFO | P05 | ===================================
+2026-09-23 19:04:04 | INFO | P05 | === RUN START ===
+2026-09-23 19:04:04 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:04:04 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:04:04 | INFO | P05 | python=3.14.7
+2026-09-23 19:04:04 | INFO | P05 | os=Windows 11
+2026-09-23 19:04:04 | INFO | P05 | shell=powershell
+2026-09-23 19:04:04 | INFO | P05 | cwd=.
+2026-09-23 19:04:04 | INFO | P05 | github_actions=False
+2026-09-23 19:04:04 | INFO | P05 | ===================================
+2026-09-23 19:04:04 | INFO | P05 | START main()
+2026-09-23 19:04:04 | INFO | P05 | ===================================
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:04:04 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:04:04 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:04:04 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:04:04 | INFO | P05 | Stores grain: one store
+2026-09-23 19:04:04 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:04:04 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:04:04 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:04:04 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:04:04 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:04:04 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:04:04 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:04:04 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:04:04 | INFO | P05 | -------------------------------
+2026-09-23 19:04:04 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:04:05 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:04:05 | INFO | P05 | -------------------------------
+2026-09-23 19:04:05 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:04:05 | INFO | P05 | -------------------------------
+2026-09-23 19:04:05 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:04:05 | INFO | P05 | -------------------------------
+2026-09-23 19:04:05 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:04:05 | INFO | P05 | -------------------------------
+2026-09-23 19:04:05 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:04:05 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:19:43 | INFO | P05 | ===================================
+2026-09-23 19:19:43 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:19:43 | INFO | P05 | ===================================
+2026-09-23 19:21:00 | INFO | P05 | === RUN START ===
+2026-09-23 19:21:00 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:21:00 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:21:00 | INFO | P05 | python=3.14.7
+2026-09-23 19:21:00 | INFO | P05 | os=Windows 11
+2026-09-23 19:21:00 | INFO | P05 | shell=powershell
+2026-09-23 19:21:00 | INFO | P05 | cwd=.
+2026-09-23 19:21:00 | INFO | P05 | github_actions=False
+2026-09-23 19:21:00 | INFO | P05 | ===================================
+2026-09-23 19:21:00 | INFO | P05 | START main()
+2026-09-23 19:21:00 | INFO | P05 | ===================================
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:21:00 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:21:00 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:21:00 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:21:00 | INFO | P05 | Stores grain: one store
+2026-09-23 19:21:00 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:21:00 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:21:00 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:21:00 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:21:00 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:21:00 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:21:00 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:21:00 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:21:00 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:21:00 | INFO | P05 | -------------------------------
+2026-09-23 19:21:00 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:21:00 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:22:25 | INFO | P05 | ===================================
+2026-09-23 19:22:25 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:22:25 | INFO | P05 | ===================================
+2026-09-23 19:32:25 | INFO | P05 | === RUN START ===
+2026-09-23 19:32:25 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:32:25 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:32:25 | INFO | P05 | python=3.14.7
+2026-09-23 19:32:25 | INFO | P05 | os=Windows 11
+2026-09-23 19:32:25 | INFO | P05 | shell=powershell
+2026-09-23 19:32:25 | INFO | P05 | cwd=.
+2026-09-23 19:32:25 | INFO | P05 | github_actions=False
+2026-09-23 19:32:25 | INFO | P05 | ===================================
+2026-09-23 19:32:25 | INFO | P05 | START main()
+2026-09-23 19:32:25 | INFO | P05 | ===================================
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:32:25 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:32:25 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:32:25 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:32:25 | INFO | P05 | Stores grain: one store
+2026-09-23 19:32:25 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:32:25 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:32:25 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:32:25 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:32:25 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:32:25 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:32:25 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:32:25 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:32:25 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:32:25 | INFO | P05 | -------------------------------
+2026-09-23 19:32:25 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:32:25 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:32:40 | INFO | P05 | ===================================
+2026-09-23 19:32:40 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:32:40 | INFO | P05 | ===================================
+2026-09-23 19:35:40 | INFO | P05 | === RUN START ===
+2026-09-23 19:35:40 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:35:40 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:35:40 | INFO | P05 | python=3.14.7
+2026-09-23 19:35:40 | INFO | P05 | os=Windows 11
+2026-09-23 19:35:40 | INFO | P05 | shell=powershell
+2026-09-23 19:35:40 | INFO | P05 | cwd=.
+2026-09-23 19:35:40 | INFO | P05 | github_actions=False
+2026-09-23 19:35:40 | INFO | P05 | ===================================
+2026-09-23 19:35:40 | INFO | P05 | START main()
+2026-09-23 19:35:40 | INFO | P05 | ===================================
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:35:40 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:35:40 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:35:40 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:35:40 | INFO | P05 | Stores grain: one store
+2026-09-23 19:35:40 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:35:40 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:35:40 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:35:40 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:35:40 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:35:40 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:35:40 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:35:40 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:35:40 | INFO | P05 | -------------------------------
+2026-09-23 19:35:40 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:35:41 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:35:41 | INFO | P05 | -------------------------------
+2026-09-23 19:35:41 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:35:41 | INFO | P05 | -------------------------------
+2026-09-23 19:35:41 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:35:41 | INFO | P05 | -------------------------------
+2026-09-23 19:35:41 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:35:41 | INFO | P05 | -------------------------------
+2026-09-23 19:35:41 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:35:41 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:36:21 | INFO | P05 | ===================================
+2026-09-23 19:36:21 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:36:21 | INFO | P05 | ===================================
+2026-09-23 19:39:53 | INFO | P05 | === RUN START ===
+2026-09-23 19:39:53 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:39:53 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:39:53 | INFO | P05 | python=3.14.7
+2026-09-23 19:39:53 | INFO | P05 | os=Windows 11
+2026-09-23 19:39:53 | INFO | P05 | shell=powershell
+2026-09-23 19:39:53 | INFO | P05 | cwd=.
+2026-09-23 19:39:53 | INFO | P05 | github_actions=False
+2026-09-23 19:39:53 | INFO | P05 | ===================================
+2026-09-23 19:39:53 | INFO | P05 | START main()
+2026-09-23 19:39:53 | INFO | P05 | ===================================
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:39:53 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:39:53 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:39:53 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:39:53 | INFO | P05 | Stores grain: one store
+2026-09-23 19:39:53 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:39:53 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:39:53 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:39:53 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:39:53 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:39:53 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:39:53 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:39:53 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:39:53 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:39:53 | INFO | P05 | -------------------------------
+2026-09-23 19:39:53 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:39:53 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:41:58 | INFO | P05 | ===================================
+2026-09-23 19:41:58 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:41:58 | INFO | P05 | ===================================
+2026-09-23 19:43:22 | INFO | P05 | === RUN START ===
+2026-09-23 19:43:22 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:43:22 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:43:22 | INFO | P05 | python=3.14.7
+2026-09-23 19:43:22 | INFO | P05 | os=Windows 11
+2026-09-23 19:43:22 | INFO | P05 | shell=powershell
+2026-09-23 19:43:22 | INFO | P05 | cwd=.
+2026-09-23 19:43:22 | INFO | P05 | github_actions=False
+2026-09-23 19:43:22 | INFO | P05 | ===================================
+2026-09-23 19:43:22 | INFO | P05 | START main()
+2026-09-23 19:43:22 | INFO | P05 | ===================================
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:43:22 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:43:22 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:43:22 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:43:22 | INFO | P05 | Stores grain: one store
+2026-09-23 19:43:22 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:43:22 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:43:22 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:43:22 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:43:22 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:43:22 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:43:22 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:43:22 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:43:22 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:43:22 | INFO | P05 | -------------------------------
+2026-09-23 19:43:22 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:43:22 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:44:34 | INFO | P05 | ===================================
+2026-09-23 19:44:34 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:44:34 | INFO | P05 | ===================================
+2026-09-23 19:44:51 | INFO | P05 | === RUN START ===
+2026-09-23 19:44:51 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:44:51 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:44:51 | INFO | P05 | python=3.14.7
+2026-09-23 19:44:51 | INFO | P05 | os=Windows 11
+2026-09-23 19:44:51 | INFO | P05 | shell=powershell
+2026-09-23 19:44:51 | INFO | P05 | cwd=.
+2026-09-23 19:44:51 | INFO | P05 | github_actions=False
+2026-09-23 19:44:51 | INFO | P05 | ===================================
+2026-09-23 19:44:51 | INFO | P05 | START main()
+2026-09-23 19:44:51 | INFO | P05 | ===================================
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:44:51 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:44:51 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:44:51 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:44:51 | INFO | P05 | Stores grain: one store
+2026-09-23 19:44:51 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:44:51 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:44:51 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:44:51 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:44:51 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:44:51 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:44:51 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:44:51 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:44:51 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:44:51 | INFO | P05 | -------------------------------
+2026-09-23 19:44:51 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:44:51 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:45:10 | INFO | P05 | ===================================
+2026-09-23 19:45:10 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:45:10 | INFO | P05 | ===================================
+2026-09-23 19:46:54 | INFO | P05 | === RUN START ===
+2026-09-23 19:46:54 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-23 19:46:54 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-23 19:46:54 | INFO | P05 | python=3.14.7
+2026-09-23 19:46:54 | INFO | P05 | os=Windows 11
+2026-09-23 19:46:54 | INFO | P05 | shell=powershell
+2026-09-23 19:46:54 | INFO | P05 | cwd=.
+2026-09-23 19:46:54 | INFO | P05 | github_actions=False
+2026-09-23 19:46:54 | INFO | P05 | ===================================
+2026-09-23 19:46:54 | INFO | P05 | START main()
+2026-09-23 19:46:54 | INFO | P05 | ===================================
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 01. LOAD the related tables.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-23 19:46:54 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-23 19:46:54 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-23 19:46:54 | INFO | P05 | Related tables loaded successfully.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | Regions grain: one business region
+2026-09-23 19:46:54 | INFO | P05 | Stores grain: one store
+2026-09-23 19:46:54 | INFO | P05 | Employees grain: one employee
+2026-09-23 19:46:54 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-23 19:46:54 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-23 19:46:54 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-23 19:46:54 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-23 19:46:54 | INFO | P05 | SQLite database connection created.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-23 19:46:54 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-23 19:46:54 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-23 19:46:54 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-23 19:46:54 | INFO | P05 | -------------------------------
+2026-09-23 19:46:54 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-23 19:46:54 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-23 19:47:54 | INFO | P05 | ===================================
+2026-09-23 19:47:54 | INFO | P05 | END main() - Executed successfully!
+2026-09-23 19:47:54 | INFO | P05 | ===================================
+2026-09-24 19:50:50 | INFO | P05 | === RUN START ===
+2026-09-24 19:50:50 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-24 19:50:50 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-24 19:50:50 | INFO | P05 | python=3.14.7
+2026-09-24 19:50:50 | INFO | P05 | os=Windows 11
+2026-09-24 19:50:50 | INFO | P05 | shell=powershell
+2026-09-24 19:50:50 | INFO | P05 | cwd=.
+2026-09-24 19:50:50 | INFO | P05 | github_actions=False
+2026-09-24 19:50:50 | INFO | P05 | ===================================
+2026-09-24 19:50:50 | INFO | P05 | START main()
+2026-09-24 19:50:50 | INFO | P05 | ===================================
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 01. LOAD the related tables.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-24 19:50:50 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-24 19:50:50 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-24 19:50:50 | INFO | P05 | Related tables loaded successfully.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | Regions grain: one business region
+2026-09-24 19:50:50 | INFO | P05 | Stores grain: one store
+2026-09-24 19:50:50 | INFO | P05 | Employees grain: one employee
+2026-09-24 19:50:50 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-24 19:50:50 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-24 19:50:50 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-24 19:50:50 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-24 19:50:50 | INFO | P05 | SQLite database connection created.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-24 19:50:50 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-24 19:50:50 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-24 19:50:50 | INFO | P05 | -------------------------------
+2026-09-24 19:50:50 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-24 19:50:51 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-24 19:50:51 | INFO | P05 | -------------------------------
+2026-09-24 19:50:51 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-24 19:50:51 | INFO | P05 | -------------------------------
+2026-09-24 19:50:51 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-24 19:50:51 | INFO | P05 | -------------------------------
+2026-09-24 19:50:51 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-24 19:50:51 | INFO | P05 | -------------------------------
+2026-09-24 19:50:51 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-24 19:50:51 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-24 19:50:54 | INFO | P05 | ===================================
+2026-09-24 19:50:54 | INFO | P05 | END main() - Executed successfully!
+2026-09-24 19:50:54 | INFO | P05 | ===================================
+2026-09-24 19:51:38 | INFO | P05 | === RUN START ===
+2026-09-24 19:51:38 | INFO | P05 | project=P05 - PYTHON AND SQL
+2026-09-24 19:51:38 | INFO | P05 | repo_dir=datafun-05-sql
+2026-09-24 19:51:38 | INFO | P05 | python=3.14.7
+2026-09-24 19:51:38 | INFO | P05 | os=Windows 11
+2026-09-24 19:51:38 | INFO | P05 | shell=powershell
+2026-09-24 19:51:38 | INFO | P05 | cwd=.
+2026-09-24 19:51:38 | INFO | P05 | github_actions=False
+2026-09-24 19:51:38 | INFO | P05 | ===================================
+2026-09-24 19:51:38 | INFO | P05 | START main()
+2026-09-24 19:51:38 | INFO | P05 | ===================================
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 01. LOAD the related tables.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | regions file = data\retail\region.csv
+2026-09-24 19:51:38 | INFO | P05 | stores file = data\retail\store.csv
+2026-09-24 19:51:38 | INFO | P05 | employees file = data\retail\employee.csv
+2026-09-24 19:51:38 | INFO | P05 | Related tables loaded successfully.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 02. INSPECT the grain and keys.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | Regions grain: one business region
+2026-09-24 19:51:38 | INFO | P05 | Stores grain: one store
+2026-09-24 19:51:38 | INFO | P05 | Employees grain: one employee
+2026-09-24 19:51:38 | INFO | P05 | Regions columns: ['region_id', 'region_name']
+2026-09-24 19:51:38 | INFO | P05 | Stores columns: ['store_id', 'store_name', 'region_id', 'store_type', 'square_feet']
+2026-09-24 19:51:38 | INFO | P05 | Employees columns: ['employee_id', 'employee_name', 'store_id', 'role', 'years_employed']
+2026-09-24 19:51:38 | INFO | P05 | 
+The data is stored in three related tables.
+
+One region can have many stores.
+The stores table uses region_id to identify each store's region.
+
+One store can have many employees.
+The employees table uses store_id to identify each employee's store.
+
+The shared keys connect information stored in different tables.
+
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 03. CREATE a SQLite database.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | SQLite database = data\retail\business.sqlite
+2026-09-24 19:51:38 | INFO | P05 | SQLite database connection created.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 04. LOAD the tables into SQLite.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | Related tables loaded into SQLite.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 05. QUERY across related tables with SQL.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 
+I want to compare the number of employees working at each store.
+The result should have one row per store.
+
+The information I need requires all three tables:
+ - region name is in regions,
+ - store name is in stores,
+ - employee info is in employees.
+
+2026-09-24 19:51:38 | INFO | P05 | 
+SQL query:
+
+SELECT
+    r.region_name,
+    s.store_name,
+    COUNT(e.employee_id) AS employee_count
+FROM regions AS r
+JOIN stores AS s
+    ON r.region_id = s.region_id
+LEFT JOIN employees AS e
+    ON s.store_id = e.store_id
+GROUP BY
+    r.region_name,
+    s.store_name
+ORDER BY
+    employee_count DESC;
+
+2026-09-24 19:51:38 | INFO | P05 | 
+Query result:
+   region_name        store_name  employee_count
+0         West     Coastal Plaza              18
+1        South  Peachtree Center              17
+2         East      Maple Square              15
+3        South   Sunrise Commons              14
+4      Central    Prairie Center              13
+5         West     Canyon Center              13
+6        North         Northgate              12
+7         East      Harbor Point              11
+8      Central  Lakeside Commons              10
+9        South   Magnolia Market              10
+10       North       Cedar Plaza               9
+11     Central      River Market               8
+12        West    Desert Springs               7
+13        East     Pine Crossing               6
+14       South    Bayou Crossing               5
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 06. VISUALIZE the query result with Python.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 
+The query result has one numeric value
+(employee count) for each store.
+
+A bar chart works for comparing
+a numeric value across named categories.
+Every pandas df has a
+plot.box() method for creating box plots.
+
+2026-09-24 19:51:38 | INFO | P05 | Chart saved successfully at docs\images\first-chart.png.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 07. SUMMARIZE what you found.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | CUSTOM OBSERVATIONS:
+    The SQL query connected information from
+    the regions, stores, and employees tables.
+
+    The result has one row per store.
+
+    I observed ...
+
+    Based on this result, I would next like to explore ...
+    
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | 08. DISPLAY the visualization.
+2026-09-24 19:51:38 | INFO | P05 | -------------------------------
+2026-09-24 19:51:38 | INFO | P05 | In a script, call plt.show() at the end to display all charts.
+2026-09-24 19:51:38 | INFO | P05 | Close all chart windows (with the close button) to continue.
+2026-09-24 19:51:38 | INFO | P05 | ===================================
+2026-09-24 19:51:38 | INFO | P05 | END main() - Executed successfully!
+2026-09-24 19:51:38 | INFO | P05 | ===================================

@@ -1,0 +1,145 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.25.0",
+    "script_metadata_hash": "20471874d2fd222de3934fcc13ac4583"
+  },
+  "cells": [
+    {
+      "id": "setup",
+      "code_hash": "d00e5db18251031460955302fc4b6060",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "152cde4dc271404e288c5258c9c18067",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"clinic-related-data-analysis\">Clinic Related Data Analysis</h1>\n<span class=\"paragraph\">Explore related healthcare clinic data interactively.</span>\n<span class=\"paragraph\">The data has three one-to-many relationships:</span>\n<span class=\"paragraph\"><strong>clinic \u2192 patient \u2192 visit \u2192 lab result</strong></span>\n<h3 id=\"tables\">Tables</h3>\n<span class=\"paragraph\"><strong>Clinic</strong></span>\n<ul>\n<li><code>clinic_id</code></li>\n<li><code>clinic_name</code></li>\n<li><code>city</code></li>\n</ul>\n<span class=\"paragraph\"><strong>Patient</strong></span>\n<ul>\n<li><code>patient_id</code></li>\n<li><code>clinic_id</code></li>\n<li><code>age</code></li>\n<li><code>age_group</code></li>\n</ul>\n<span class=\"paragraph\"><strong>Visit</strong></span>\n<ul>\n<li><code>visit_id</code></li>\n<li><code>patient_id</code></li>\n<li><code>visit_type</code></li>\n<li><code>visit_minutes</code></li>\n</ul>\n<span class=\"paragraph\"><strong>Lab Result</strong></span>\n<ul>\n<li><code>lab_result_id</code></li>\n<li><code>visit_id</code></li>\n<li><code>test_name</code></li>\n<li><code>result_value</code></li>\n<li><code>unit</code></li>\n</ul>\n<h3 id=\"sql-question\">SQL Question</h3>\n<span class=\"paragraph\"><strong>How many visits does each clinic have,\nand what is the average visit length?</strong></span>\n<span class=\"paragraph\">SQL joins the related clinic, patient, and visit\ntables and calculates the number of visits and\naverage visit length for each clinic.</span>\n<span class=\"paragraph\">The SQL query result is returned as a pandas\nDataFrame and visualized with Python.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "5a744cda4d963069c0bf81f02d13fb7b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "32bc06cd9d60c1c24eb68729cea5c583",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"loaded-data\">Loaded Data</h2>\n<span class=\"paragraph\">The four CSV files have been loaded into pandas\nDataFrames before being inserted into SQLite.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "d45152342f2186f9b4110b2fe9cb8a94",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Database connected.</strong></span>\n<span class=\"paragraph\">The clinic, patient, visit, and lab result\ntables are now available in SQLite.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "7f518b1f5fb777c3483cadd59a49f510",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "2fdfeab140ee290f438a432c1d3f878e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><div class=\"language-text highlight\"><pre><span></span><code>## SQL Query\n\nThe following SQL joins the three related tables\nneeded to answer the question:\n\n```sql\n</code></pre></div>\n<span class=\"paragraph\">SELECT\n    c.clinic_name,\n    c.city,\n    COUNT(v.visit_id) AS visit_count,\n    ROUND(AVG(v.visit_minutes), 1)\n        AS average_visit_minutes\nFROM clinic AS c\nJOIN patient AS p\n    ON c.clinic_id = p.clinic_id\nJOIN visit AS v\n    ON p.patient_id = v.patient_id\nGROUP BY\n    c.clinic_name,\n    c.city\nORDER BY\n    visit_count DESC;</span>\n<div class=\"language-teratermmacro highlight\"><pre><span></span><code>```\n\n<span class=\"nv\">The</span><span class=\"w\"> </span><span class=\"nv\">query</span>:\n\n<span class=\"mi\">1</span>.<span class=\"w\"> </span><span class=\"nv\">Joins</span><span class=\"w\"> </span><span class=\"nv\">each</span><span class=\"w\"> </span><span class=\"nv\">clinic</span><span class=\"w\"> </span><span class=\"nv\">to</span><span class=\"w\"> </span><span class=\"nv\">its</span><span class=\"w\"> </span><span class=\"nv\">patients</span>.\n\n<span class=\"mi\">2</span>.<span class=\"w\"> </span><span class=\"nv\">Joins</span><span class=\"w\"> </span><span class=\"nv\">each</span><span class=\"w\"> </span><span class=\"nv\">patient</span><span class=\"w\"> </span><span class=\"nv\">to</span><span class=\"w\"> </span><span class=\"nv\">their</span><span class=\"w\"> </span><span class=\"nv\">visits</span>.\n\n<span class=\"mi\">3</span>.<span class=\"w\"> </span><span class=\"nv\">Counts</span><span class=\"w\"> </span><span class=\"nv\">the</span><span class=\"w\"> </span><span class=\"nv\">visits</span><span class=\"w\"> </span><span class=\"k\">for</span><span class=\"w\"> </span><span class=\"nv\">each</span><span class=\"w\"> </span><span class=\"nv\">clinic</span>.\n\n<span class=\"mi\">4</span>.<span class=\"w\"> </span><span class=\"nv\">Calculates</span><span class=\"w\"> </span><span class=\"nv\">the</span><span class=\"w\"> </span><span class=\"nv\">average</span><span class=\"w\"> </span><span class=\"nv\">visit</span><span class=\"w\"> </span><span class=\"nv\">length</span>.\n\n<span class=\"mi\">5</span>.<span class=\"w\"> </span><span class=\"nv\">Groups</span><span class=\"w\"> </span><span class=\"nv\">the</span><span class=\"w\"> </span><span class=\"nv\">results</span><span class=\"w\"> </span><span class=\"nv\">by</span><span class=\"w\"> </span><span class=\"nv\">clinic</span>.\n\n<span class=\"mi\">6</span>.<span class=\"w\"> </span><span class=\"nv\">Sorts</span><span class=\"w\"> </span><span class=\"nv\">clinics</span><span class=\"w\"> </span><span class=\"nv\">by</span><span class=\"w\"> </span><span class=\"nv\">the</span><span class=\"w\"> </span><span class=\"nv\">number</span><span class=\"w\"> </span><span class=\"nv\">of</span><span class=\"w\"> </span><span class=\"nv\">visits</span>.\n</code></pre></div></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "838a79e5e6f8c5296e32a3dd75795478",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"sql-result\">SQL Result</h2>\n<span class=\"paragraph\">The SQL result is returned to Python as a\npandas DataFrame.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "cfee8a4a7abbece6855afa7b60438a39",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='SFPL-0' random-id='37e8feaa-8791-edeb-f9da-ae5b8f185d4f'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;clinic_name&#92;&quot;:&#92;&quot;Lakeside Clinic&#92;&quot;,&#92;&quot;city&#92;&quot;:&#92;&quot;Fairview&#92;&quot;,&#92;&quot;visit_count&#92;&quot;:37,&#92;&quot;average_visit_minutes&#92;&quot;:38.2},{&#92;&quot;clinic_name&#92;&quot;:&#92;&quot;Westgate Clinic&#92;&quot;,&#92;&quot;city&#92;&quot;:&#92;&quot;Oakridge&#92;&quot;,&#92;&quot;visit_count&#92;&quot;:30,&#92;&quot;average_visit_minutes&#92;&quot;:41.2},{&#92;&quot;clinic_name&#92;&quot;:&#92;&quot;Northside Clinic&#92;&quot;,&#92;&quot;city&#92;&quot;:&#92;&quot;Brookfield&#92;&quot;,&#92;&quot;visit_count&#92;&quot;:21,&#92;&quot;average_visit_minutes&#92;&quot;:44.3},{&#92;&quot;clinic_name&#92;&quot;:&#92;&quot;Central Clinic&#92;&quot;,&#92;&quot;city&#92;&quot;:&#92;&quot;Riverton&#92;&quot;,&#92;&quot;visit_count&#92;&quot;:17,&#92;&quot;average_visit_minutes&#92;&quot;:38.2}]&quot;' data-total-rows='4' data-total-columns='4' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='false' data-page-size='10' data-field-types='[[&quot;clinic_name&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;city&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;visit_count&quot;,[&quot;integer&quot;,&quot;int64&quot;]],[&quot;average_visit_minutes&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element><marimo-mime-renderer data-mime='&quot;application/vnd.vegalite.v6+json&quot;' data-data='&quot;{&#92;n  &#92;&quot;&#36;schema&#92;&quot;: &#92;&quot;https://vega.github.io/schema/vega-lite/v6.4.1.json&#92;&quot;,&#92;n  &#92;&quot;config&#92;&quot;: {&#92;n    &#92;&quot;view&#92;&quot;: {&#92;n      &#92;&quot;continuousHeight&#92;&quot;: 300,&#92;n      &#92;&quot;continuousWidth&#92;&quot;: 300&#92;n    }&#92;n  },&#92;n  &#92;&quot;data&#92;&quot;: {&#92;n    &#92;&quot;name&#92;&quot;: &#92;&quot;data-52d05c8a54b3fb6775e0d726974b9f84&#92;&quot;&#92;n  },&#92;n  &#92;&quot;datasets&#92;&quot;: {&#92;n    &#92;&quot;data-52d05c8a54b3fb6775e0d726974b9f84&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;average_visit_minutes&#92;&quot;: 38.2,&#92;n        &#92;&quot;city&#92;&quot;: &#92;&quot;Fairview&#92;&quot;,&#92;n        &#92;&quot;clinic_name&#92;&quot;: &#92;&quot;Lakeside Clinic&#92;&quot;,&#92;n        &#92;&quot;visit_count&#92;&quot;: 37&#92;n      },&#92;n      {&#92;n        &#92;&quot;average_visit_minutes&#92;&quot;: 41.2,&#92;n        &#92;&quot;city&#92;&quot;: &#92;&quot;Oakridge&#92;&quot;,&#92;n        &#92;&quot;clinic_name&#92;&quot;: &#92;&quot;Westgate Clinic&#92;&quot;,&#92;n        &#92;&quot;visit_count&#92;&quot;: 30&#92;n      },&#92;n      {&#92;n        &#92;&quot;average_visit_minutes&#92;&quot;: 44.3,&#92;n        &#92;&quot;city&#92;&quot;: &#92;&quot;Brookfield&#92;&quot;,&#92;n        &#92;&quot;clinic_name&#92;&quot;: &#92;&quot;Northside Clinic&#92;&quot;,&#92;n        &#92;&quot;visit_count&#92;&quot;: 21&#92;n      },&#92;n      {&#92;n        &#92;&quot;average_visit_minutes&#92;&quot;: 38.2,&#92;n        &#92;&quot;city&#92;&quot;: &#92;&quot;Riverton&#92;&quot;,&#92;n        &#92;&quot;clinic_name&#92;&quot;: &#92;&quot;Central Clinic&#92;&quot;,&#92;n        &#92;&quot;visit_count&#92;&quot;: 17&#92;n      }&#92;n    ]&#92;n  },&#92;n  &#92;&quot;encoding&#92;&quot;: {&#92;n    &#92;&quot;tooltip&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;clinic_name&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;Clinic&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;city&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;City&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;visit_count&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;Visits&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;average_visit_minutes&#92;&quot;,&#92;n        &#92;&quot;title&#92;&quot;: &#92;&quot;Average Visit Minutes&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      }&#92;n    ],&#92;n    &#92;&quot;x&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;clinic_name&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: &#92;&quot;Clinic&#92;&quot;,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n    },&#92;n    &#92;&quot;y&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;visit_count&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: &#92;&quot;Number of Visits&#92;&quot;,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n    }&#92;n  },&#92;n  &#92;&quot;height&#92;&quot;: 400,&#92;n  &#92;&quot;mark&#92;&quot;: {&#92;n    &#92;&quot;type&#92;&quot;: &#92;&quot;bar&#92;&quot;&#92;n  },&#92;n  &#92;&quot;title&#92;&quot;: &#92;&quot;Number of Visits by Clinic&#92;&quot;,&#92;n  &#92;&quot;usermeta&#92;&quot;: {&#92;n    &#92;&quot;embedOptions&#92;&quot;: {}&#92;n  },&#92;n  &#92;&quot;width&#92;&quot;: &#92;&quot;container&#92;&quot;&#92;n}&quot;'></marimo-mime-renderer></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "5fbb1026ed2b9ea63308ae69467ce9c2",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"interpretation\">Interpretation</h2>\n<span class=\"paragraph\">The table and chart show the number of patient visits\nassociated with each clinic. The average visit length\nprovides an additional measure of how long visits\ntypically last at each clinic.</span>\n<span class=\"paragraph\">Clinics with more visits have a larger total patient\nvisit volume. The average visit length can be used\nalongside the visit count to understand differences\nin clinic activity.</span>\n<h2 id=\"why-sql-is-useful\">Why SQL Is Useful</h2>\n<span class=\"paragraph\">SQL is useful for this question because the information\nis stored across multiple related tables.</span>\n<span class=\"paragraph\">Instead of manually combining the clinic, patient, and\nvisit DataFrames in Python, SQL can join the tables\nusing their keys and calculate the required statistics\nwith COUNT() and AVG().</span>\n<span class=\"paragraph\">SQL also makes the relationship between the tables\nexplicit and allows the analysis to be performed close\nto the database data before the results are returned\nto Python for visualization.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "rSdZ",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

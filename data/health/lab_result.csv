@@ -1,0 +1,122 @@
+lab_result_id,visit_id,test_name,result_value,unit
+3001,2002,Vitamin D,36.0,ng/mL
+3002,2003,Glucose,74.9,mg/dL
+3003,2003,Total Cholesterol,187.6,mg/dL
+3004,2004,Total Cholesterol,226.9,mg/dL
+3005,2004,Hemoglobin,16.6,g/dL
+3006,2005,Vitamin D,48.9,ng/mL
+3007,2005,Hemoglobin,17.0,g/dL
+3008,2005,Total Cholesterol,162.7,mg/dL
+3009,2006,Glucose,92.9,mg/dL
+3010,2006,Total Cholesterol,206.4,mg/dL
+3011,2006,Vitamin D,21.3,ng/mL
+3012,2007,Glucose,81.7,mg/dL
+3013,2007,Total Cholesterol,139.1,mg/dL
+3014,2008,Vitamin D,18.7,ng/mL
+3015,2008,Hemoglobin,14.5,g/dL
+3016,2009,Vitamin D,40.7,ng/mL
+3017,2010,Total Cholesterol,217.2,mg/dL
+3018,2011,Hemoglobin,14.7,g/dL
+3019,2011,Glucose,97.0,mg/dL
+3020,2012,Total Cholesterol,242.4,mg/dL
+3021,2013,Glucose,120.2,mg/dL
+3022,2014,Glucose,90.8,mg/dL
+3023,2014,Total Cholesterol,196.9,mg/dL
+3024,2015,Glucose,87.5,mg/dL
+3025,2016,Vitamin D,16.2,ng/mL
+3026,2017,Vitamin D,16.5,ng/mL
+3027,2020,Total Cholesterol,153.1,mg/dL
+3028,2021,Glucose,108.9,mg/dL
+3029,2021,Vitamin D,24.7,ng/mL
+3030,2022,Hemoglobin,14.4,g/dL
+3031,2023,Glucose,91.1,mg/dL
+3032,2024,Total Cholesterol,174.7,mg/dL
+3033,2026,Glucose,78.2,mg/dL
+3034,2026,Total Cholesterol,239.6,mg/dL
+3035,2027,Vitamin D,27.6,ng/mL
+3036,2028,Total Cholesterol,192.7,mg/dL
+3037,2029,Hemoglobin,12.3,g/dL
+3038,2029,Vitamin D,24.9,ng/mL
+3039,2031,Glucose,108.3,mg/dL
+3040,2033,Glucose,103.2,mg/dL
+3041,2034,Total Cholesterol,170.7,mg/dL
+3042,2036,Glucose,125.0,mg/dL
+3043,2038,Vitamin D,27.5,ng/mL
+3044,2038,Total Cholesterol,160.1,mg/dL
+3045,2040,Hemoglobin,12.0,g/dL
+3046,2040,Vitamin D,25.2,ng/mL
+3047,2041,Vitamin D,34.1,ng/mL
+3048,2041,Total Cholesterol,230.0,mg/dL
+3049,2042,Glucose,109.3,mg/dL
+3050,2043,Total Cholesterol,192.6,mg/dL
+3051,2044,Hemoglobin,16.7,g/dL
+3052,2045,Total Cholesterol,200.2,mg/dL
+3053,2045,Vitamin D,39.2,ng/mL
+3054,2046,Total Cholesterol,181.3,mg/dL
+3055,2046,Vitamin D,44.4,ng/mL
+3056,2047,Total Cholesterol,243.1,mg/dL
+3057,2047,Hemoglobin,11.3,g/dL
+3058,2049,Glucose,107.0,mg/dL
+3059,2051,Hemoglobin,13.4,g/dL
+3060,2052,Hemoglobin,15.7,g/dL
+3061,2053,Total Cholesterol,212.8,mg/dL
+3062,2053,Hemoglobin,14.3,g/dL
+3063,2053,Vitamin D,17.8,ng/mL
+3064,2054,Vitamin D,25.8,ng/mL
+3065,2054,Total Cholesterol,221.2,mg/dL
+3066,2057,Total Cholesterol,130.2,mg/dL
+3067,2059,Vitamin D,50.9,ng/mL
+3068,2061,Total Cholesterol,187.4,mg/dL
+3069,2062,Hemoglobin,15.1,g/dL
+3070,2062,Glucose,83.6,mg/dL
+3071,2063,Vitamin D,36.9,ng/mL
+3072,2064,Hemoglobin,12.2,g/dL
+3073,2064,Total Cholesterol,222.7,mg/dL
+3074,2066,Total Cholesterol,158.3,mg/dL
+3075,2067,Vitamin D,17.7,ng/mL
+3076,2067,Hemoglobin,14.8,g/dL
+3077,2070,Glucose,113.5,mg/dL
+3078,2071,Total Cholesterol,191.2,mg/dL
+3079,2073,Glucose,119.7,mg/dL
+3080,2074,Glucose,85.5,mg/dL
+3081,2074,Total Cholesterol,249.0,mg/dL
+3082,2074,Hemoglobin,11.3,g/dL
+3083,2075,Glucose,81.0,mg/dL
+3084,2076,Hemoglobin,12.9,g/dL
+3085,2076,Vitamin D,50.2,ng/mL
+3086,2077,Vitamin D,55.1,ng/mL
+3087,2077,Total Cholesterol,235.8,mg/dL
+3088,2078,Total Cholesterol,132.4,mg/dL
+3089,2078,Glucose,104.7,mg/dL
+3090,2078,Vitamin D,22.3,ng/mL
+3091,2081,Vitamin D,19.7,ng/mL
+3092,2082,Vitamin D,15.0,ng/mL
+3093,2083,Glucose,113.5,mg/dL
+3094,2083,Total Cholesterol,148.7,mg/dL
+3095,2084,Hemoglobin,13.4,g/dL
+3096,2086,Hemoglobin,16.6,g/dL
+3097,2086,Vitamin D,54.7,ng/mL
+3098,2087,Total Cholesterol,204.6,mg/dL
+3099,2088,Vitamin D,43.0,ng/mL
+3100,2089,Glucose,111.5,mg/dL
+3101,2089,Hemoglobin,14.0,g/dL
+3102,2089,Vitamin D,15.5,ng/mL
+3103,2090,Hemoglobin,12.7,g/dL
+3104,2091,Vitamin D,21.4,ng/mL
+3105,2092,Glucose,73.5,mg/dL
+3106,2093,Hemoglobin,11.1,g/dL
+3107,2094,Total Cholesterol,247.7,mg/dL
+3108,2096,Glucose,123.5,mg/dL
+3109,2096,Total Cholesterol,148.9,mg/dL
+3110,2097,Total Cholesterol,171.2,mg/dL
+3111,2097,Hemoglobin,13.3,g/dL
+3112,2098,Total Cholesterol,133.6,mg/dL
+3113,2098,Vitamin D,46.4,ng/mL
+3114,2099,Vitamin D,47.5,ng/mL
+3115,2101,Vitamin D,49.4,ng/mL
+3116,2101,Hemoglobin,13.8,g/dL
+3117,2101,Glucose,104.2,mg/dL
+3118,2102,Hemoglobin,12.4,g/dL
+3119,2104,Vitamin D,40.3,ng/mL
+3120,2104,Hemoglobin,14.7,g/dL
+3121,2104,Glucose,76.9,mg/dL

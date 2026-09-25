@@ -1,0 +1,13 @@
+branch_id,branch_name,state_id,city
+101,Cedar Rapids Central,1,Cedar Rapids
+102,Des Moines North,1,Des Moines
+103,Iowa City East,1,Iowa City
+201,Lawrence Central,2,Lawrence
+202,Overland Park,2,Overland Park
+203,Topeka West,2,Topeka
+301,Kansas City Plaza,3,Kansas City
+302,St. Joseph Central,3,St. Joseph
+303,Springfield South,3,Springfield
+304,Columbia Main,3,Columbia
+401,Lincoln Central,4,Lincoln
+402,Omaha West,4,Omaha
